@@ -11,32 +11,46 @@ import javax.swing.JPanel;
 public class TransparentPanel extends JPanel{
 	
 	String text;
+	Font font;
+	Color color;
+	private boolean clear;
 	public TransparentPanel(){
 		//super();
 		setOpaque(false);
-		this.text = "You are preety1231231231231231";
+		this.text = "You are preety";
+		font = new Font("Arial",Font.BOLD, 33);
+		color = new Color(0,0,0,255);
+		this.clear = true;
 	}
 	
 	public void setText(String text){
 		this.text = text;
 	}
 	
-	public void refresh(){
+	public void clear(){
+		this.clear=true;
 		repaint();
 	}
+	
+	public void refresh(){
+		this.clear = false;
+		repaint();
+		
+	}
+	
 	@Override
     protected void paintComponent(Graphics g) {
+		
+		
+		if(this.clear){
+			g.clearRect(0, 0, getWidth(), getHeight());
+		}else{
 
-        super.paintComponent(g); 
-
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setComposite(AlphaComposite.SrcOver.derive(0.85f));
-        //g2d.setColor(getBackground());
-        //g2d.fillRect(0, 0, getWidth(), getHeight());
-        g2d.setFont(new Font("Arial",Font.BOLD, 33));
-        g2d.setColor(new Color(0,0,0,255));
-        g2d.drawString(this.text, 30, 30);
-        
+        	g.setFont(font);
+        	g.setColor(color);
+        	g.drawString(this.text, 30, 30);
+		}
+		super.paintComponent(g); 
 
     }
 

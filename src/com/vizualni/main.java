@@ -20,8 +20,9 @@ public class main {
 		while(true){
 			rand_id = (int)(Math.random()*(messages.size()));
 			tranny.displayText(messages.get(rand_id));
+			
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(1000 + (int)(Math.random()*15*1000));
 			} catch (Exception e) {
 				break;
 			}
