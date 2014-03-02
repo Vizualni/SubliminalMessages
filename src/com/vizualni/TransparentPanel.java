@@ -3,7 +3,6 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
@@ -13,10 +12,12 @@ public class TransparentPanel extends JPanel{
 	String text;
 	Font font;
 	Color color;
+	private TransparentWindow parent;
 	private boolean clear;
-	public TransparentPanel(){
+	public TransparentPanel(TransparentWindow transparentWindow){
 		//super();
-		setOpaque(false);
+		setOpaque(true);
+		parent = transparentWindow;
 		this.text = "You are preety";
 		font = new Font("Arial",Font.BOLD, 33);
 		color = new Color(0,0,0,255);
@@ -36,6 +37,7 @@ public class TransparentPanel extends JPanel{
 		this.clear = false;
 		repaint();
 		
+
 	}
 	
 	@Override
@@ -43,15 +45,16 @@ public class TransparentPanel extends JPanel{
 		
 		
 		if(this.clear){
-			g.clearRect(0, 0, getWidth(), getHeight());
+			g.setColor(new java.awt.Color(0, 0, 0, 0));
+			g.fillRect(0, 0, getWidth(), getHeight());
 		}else{
-
+			
         	g.setFont(font);
         	g.setColor(color);
         	g.drawString(this.text, 30, 30);
 		}
-		super.paintComponent(g); 
-
+		 
+		super.paintComponent(g);
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class main {
 
 	/**
-	 * 
+	 * Displays subliminal messages on screen.
 	 */
 	public static void main(String[] args) {
 		
@@ -22,7 +22,7 @@ public class main {
 			tranny.displayText(messages.get(rand_id));
 			
 			try {
-				Thread.sleep(1000 + (int)(Math.random()*15*1000));
+				Thread.sleep(1000 + (int)(Math.random()*4*1000));
 			} catch (Exception e) {
 				break;
 			}
@@ -30,7 +30,10 @@ public class main {
 
 	}
 	
-	
+	/*
+	 * Gets all messages from file
+	 * 
+	 * */
 	public static ArrayList<String> getMessages(String filename){
 		ArrayList<String> messages = new ArrayList<String>();
 		try{
